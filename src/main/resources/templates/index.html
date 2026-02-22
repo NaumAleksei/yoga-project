@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Flow | Личный наставник</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">YOGA<span>FLOW</span></div>
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#about">Обо Мне</a>
+        <a href="#functional">Функциональная йога</a>
+        <a href="#expectations">Занятия</a>
+        <a href="#contacts">Контакты</a>
+        <span class="divider">|</span>
+        <a href="/prices" class="btn-link">Цены</a>
+        <a href="/login" class="btn-link">Вход</a>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/hero.jpg');">
+        <div class="hero-content">
+            <h1>Гармония в каждом движении</h1>
+            <p>Сертифицированный инструктор Хатха и Функциональной йоги</p>
+            <a href="#register" class="cta-button">Начать практику</a>
+        </div>
+    </section>
+
+    <section id="about" class="content-section">
+        <div class="container">
+            <div class="text-block">
+                <h2>Обо Мне</h2>
+                <p>Привет! Меня зовут Наумова Марина. Мой путь в йоге начался более 15 лет назад. Я верю, что тело — это инструмент для познания своего внутреннего мира.</p>
+                <ul class="features-list">
+                    <li>✅ Международный сертификат RYT-200</li>
+                    <li>✅ 1000+ часов личной практики</li>
+                    <li>✅ Специалист по функциональной йоге</li>
+                </ul>
+            </div>
+            <div class="image-block">
+                <img src="/images/about.png" alt="Мое фото">
+            </div>
+        </div>
+    </section>
+
+    <section id="functional" class="content-section reverse">
+        <div class="container">
+            <div class="text-block">
+                <h2>Функциональная йога</h2>
+                <p>Это работа над силой и контролем. Мы учимся двигаться осознанно, превращая каждую асану в глубокое исследование возможностей своего тела.</p>
+            </div>
+            <div class="image-block">
+                <img src="/images/action.jpg" alt="Йога в движении">
+            </div>
+        </div>
+    </section>
+
+    <section id="expectations">
+        <div class="container" style="flex-direction: column; align-items: flex-start;">
+            <h2>Что ждет на занятиях:</h2>
+            <ul style="list-style: none; padding: 0; font-size: 1.2rem;">
+                <li style="margin-bottom: 20px;">🧡 Проработаем все тело с помощью асан</li>
+                <li style="margin-bottom: 20px;">🧡 Мягко воздействуем на суставы и связки, исключая травмы</li>
+                <li style="margin-bottom: 20px;">🧡 Особое внимание уделим балансам, мышцам пресса и спины для улучшения осанки</li>
+                <li style="margin-bottom: 20px;">🧡 Научимся осознанно дышать и чувствовать свое тело</li>
+            </ul>
+        </div>
+        <div class="container" style="flex-direction: column; align-items: flex-start;">
+            <h2>Кому подходят занятия по функциональной йоге:</h2>
+            <ul style="list-style: none; padding: 0; font-size: 1.2rem;">
+                <li style="margin-bottom: 20px;"> • Новичкам: Упражнения безопасны, а нагрузка адаптируется под уровень подготовки.</li>
+                <li style="margin-bottom: 20px;"> • Людям с сидячей работой</li>
+                <li style="margin-bottom: 20px;"> • Тем, кто восстанавливается после травм или испытывает боли в суставах</li>
+                <li style="margin-bottom: 20px;"> • И конечно, Людям испытывающим стресс</li>
+            </ul>
+        </div>
+    </section>
+
+        <div class="grid">
+            <div class="card">
+                <img src="/images/yoga1.jpg" alt="Практика" class="card-img">
+                <h3>Атмосфера</h3>
+                <p>Концентрация на дыхании и правильной отстройке каждой позы.</p>
+            </div>
+            <div class="card">
+                <img src="/images/yoga3.jpg" alt="Практика" class="card-img">
+                <h3>Настроение</h3>
+                <p>Гибкость, сила и спокойствие, которое останется с вами после занятия.</p>
+            </div>
+            <div class="card">
+                <img src="/images/yoga2.jpg" alt="Практика" class="card-img">
+                <h3>Результат</h3>
+                <p>Гибкость, сила и спокойствие, которое останется с вами после занятия.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" style="padding: 80px 20px; background-color: #f9f9f9;">
+        <div class="contact-box" style="
+        max-width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    ">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Записаться на занятие</h2>
+
+            <form th:action="@{/register}" method="post" style="display: flex; flex-direction: column; gap: 20px;">
+                <input type="text" name="name" placeholder="Ваше имя" required
+                       style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+
+                <input type="email" name="email" placeholder="Ваш Email" required
+                       style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+
+                <input type="tel" name="phone" placeholder="Номер телефона" required
+                       style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+
+                <button type="submit" class="cta-button"
+                        style="padding: 15px; border: none; background: #2c3e50; color: white; border-radius: 8px; cursor: pointer; font-size: 18px; transition: 0.3s;">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contacts" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-text">
+                <h2>Начните путь к себе</h2>
+                <p>📍 Студия "Pitches", ул. Мира, 10</p>
+                <p>📞 +79297880570</p>
+                <p>✉️ mvnaumova@mail.ru</p>
+            </div>
+            <img src="/images/contacts.jpg" class="contact-img" alt="Связаться со мной">
+        </div>
+    </section>
+</main>
+
+</body>
+</html>
