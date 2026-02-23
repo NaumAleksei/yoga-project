@@ -251,23 +251,72 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // --- 1. Слайдер ---
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function nextSlide() {
-            if (slides.length > 0) {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
+            function nextSlide() {
+                if (slides.length > 0) {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }
             }
+            setInterval(nextSlide, 5000);
+
+            // --- 2. Обработка формы ---
+            const yogaForm = document.querySelector('.yoga-form');
+            if (yogaForm) {
+                yogaForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log("Кнопка нажата, отправляем данные...");
+
+                    const formData = new FormData(this);
+
+                    fetch('/register', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        console.log("Статус ответа сервера:", response.status);
+                        if (response.ok) {
+                            document.getElementById('successModal').style.display = 'flex';
+                            this.reset();
+                        } else {
+                            alert("Ошибка сервера: " + response.status);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка fetch:', error);
+                        alert("Произошла ошибка при отправке. Проверьте консоль.");
+                    });
+                });
+            }
+        });
+
+        // Функция закрытия модалки (вынесена наружу, чтобы кнопка onclick её видела)
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
         }
 
-        // Запускаем переключение каждые 5 секунд
-        setInterval(nextSlide, 5000);
-    });
-</script>
+        // Закрытие по крестику
+        const closeBtn = document.querySelector('.close-modal');
+        if (closeBtn) {
+            closeBtn.onclick = closeModal;
+        }
+    </script>
+
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">✔</div>
+            <h2>Успешно!</h2>
+            <p>Вы записались на йогу. Марина свяжется с вами в ближайшее время.</p>
+            <button onclick="closeModal()" class="cta-button">Отлично</button>
+        </div>
+    </div>
+
 </body>
 </html>
