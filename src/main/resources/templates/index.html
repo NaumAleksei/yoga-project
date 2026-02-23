@@ -23,11 +23,29 @@
 </header>
 
 <main>
-    <section id="home" class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/hero.jpg');">
-        <div class="hero-content">
-            <h1>Гармония в каждом движении</h1>
-            <p>Сертифицированный инструктор Хатха и Функциональной йоги</p>
-            <a href="#register" class="cta-button">Начать практику</a>
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/startbanner.jpg');">
+            <div class="hero-content">
+                <h1>Гармония внутри тебя</h1>
+                <p>Начни свой путь к спокойствию сегодня</p>
+                <a href="#register" class="cta-button">Начать практику</a>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/startbanner1.jpg');">
+            <div class="hero-content">
+                <h1>Сила и гибкость</h1>
+                <p>Занятия для любого уровня подготовки</p>
+                <a href="#register" class="cta-button">Узнать больше</a>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/startbanner2.jpg');">
+            <div class="hero-content">
+                <h1>Дыши глубже</h1>
+                <p>Почувствуй единение с природой</p>
+                <a href="#register" class="cta-button">Записаться</a>
+            </div>
         </div>
     </section>
 
@@ -42,10 +60,7 @@
                     <li>✅ Специалист по функциональной йоге</li>
                 </ul>
             </div>
-            <div class="image-block">
-                <img src="/images/about.png" alt="Мое фото">
-            </div>
-        </div>
+              </div>
     </section>
 
     <section id="functional" class="content-section reverse">
@@ -141,6 +156,19 @@
         </div>
     </section>
 </main>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000); // Смена каждые 5 секунд
+</script>
 
 </body>
 </html>
