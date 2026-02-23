@@ -1,6 +1,6 @@
 /* Переменные и база */
 :root {
-    --primary-color: #6b8e23;
+    --primary-color: #566b58;
     --bg-light: #f9fbf9;
     --white: #ffffff;
 }
@@ -13,6 +13,15 @@ body {
     color: #333;
     background-color: var(--bg-light);
     line-height: 1.6;
+}
+
+/* Общий контейнер - УБРАЛИ display: flex, чтобы он не ломал сетку */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Шапка */
@@ -42,31 +51,19 @@ nav a {
 }
 nav a:hover { color: var(--primary-color); }
 
-/* Секции */
-section {
-    min-height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
-    box-sizing: border-box;
-}
-
-/* Главный экран */
+/* Главный экран (Слайдер) */
 .hero-slider {
     position: relative;
     width: 100%;
-    height: 85vh; /* Немного увеличим для эффекта */
+    height: 85vh;
     overflow: hidden;
-    margin-top: 60px; /* Чтобы не заезжало под фиксированную шапку */
+    margin-top: 60px;
 }
 
 .slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -75,99 +72,312 @@ section {
     text-align: center;
     color: white;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out; /* Плавное перетекание */
+    transition: opacity 1.5s ease-in-out;
     z-index: 1;
 }
 
-.slide.active {
-    opacity: 1;
-    z-index: 2;
-}
+.slide.active { opacity: 1; z-index: 2; }
 
 .hero-content h1 {
     font-size: 3.5rem;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
 }
 
 .cta-button {
     display: inline-block;
     padding: 15px 35px;
-    background: var(--primary-color);
+    background-color: var(--primary-color);
     color: white;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-/* Контентные блоки */
-.container {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    align-items: center;
+/* Блок "О методе" (Функциональная йога) */
+.yoga-description {
+    padding: 80px 0;
+    background-color: #fdfdfd;
+}
+
+.functional-box {
+    max-width: 1000px; /* Уменьшил с 1500 для лучшей читаемости */
+    margin: 0 auto;
+    padding: 40px;
+    background: #f4f6f4;
+    border-radius: 30px;
+}
+
+/* Блок "Обо мне" */
+.about-me-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: 60px;
+    align-items: center;
 }
 
-.reverse { flex-direction: row-reverse; }
-
-.text-block { flex: 1; }
-.image-block { flex: 1; }
-
-.image-block img {
+.image-wrapper { position: relative; }
+.image-wrapper img {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 2;
 }
 
-/* Карточки */
-/* Усмиряем карточки и их содержимое */
-.card {
-    background: var(--light);
-    padding: 20px;
+.image-decoration {
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 2px solid var(--primary-color);
+    top: 20px; left: 20px;
     border-radius: 20px;
+    z-index: 1;
+}
+
+/* Блок "Что вас ждет" (Карточки) */
+.benefits-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+/* Обновленный вводный текст */
+.benefits-intro {
+    max-width: 900px;
+    margin: 0 auto 80px auto;
     text-align: center;
-    transition: 0.3s;
+}
+
+.philosophy-text {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.quote-mark {
+    font-size: 8rem;
+    color: var(--primary-color);
+    opacity: 0.15;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: serif;
+}
+
+.philosophy-text p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 300;
+}
+
+.sub-philosophy {
+    font-size: 1.1rem !important;
+    color: #666 !important;
+    margin-top: 15px;
+}
+
+.divider-line {
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 30px auto;
+    border-radius: 2px;
+}
+
+.trainer-note {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.trainer-note span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* РАВНОМЕРНАЯ СЕТКА */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Немного уменьшили зазор, чтобы влезло по ширине */
+    align-items: stretch;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Всё, что выходит за границы — скрывается */
-    box-sizing: border-box; /* Чтобы паддинги не раздували карточку */
+    height: 100%;
+    /* УБРАЛИ жесткую min-height, теперь высота зависит от контента */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    overflow: hidden;
 }
 
-/* Настраиваем картинку ВНУТРИ карточки */
-.card img, .card-img {
-    width: 100% !important;  /* Растягиваем на всю ширину карточки */
-    height: 800px;           /* Фиксированная высота */
-    object-fit: cover;       /* Обрезаем края, чтобы не было искажений */
-    border-radius: 10px;     /* Скругляем углы */
-    margin-bottom: 15px;     /* Отступ до текста */
-}
-
-/* Настраиваем саму сетку, чтобы карточки не слипались */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 25px;
+.card-img-container {
+    /* Фиксируем высоту фото, чтобы все карточки были в один уровень */
+    height: 240px;
     width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 20px;
+    overflow: hidden;
 }
 
-/* Контакты */
-.contact-container {
-    background: #f1f8e9;
-    padding: 20px;
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Важно: фото не растягивается, а обрезается под размер */
+}
+
+.card-content {
+    /* Уменьшили отступы, чтобы карточка не была огромной */
+    padding: 25px 20px;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.card-content ul li {
+    margin-bottom: 10px; /* Уплотнили список */
+    font-size: 0.95rem; /* Чуть меньше шрифт для компактности */
+    line-height: 1.4;
+}
+
+/* Блок "Зал" */
+.room-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.image-wrapper { position: relative; }
+.image-wrapper img {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.image-decoration {
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 2px solid var(--primary-color);
+    top: 20px; left: 20px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* Финальная секция */
+.final-section {
+    padding: 100px 0;
+    background-color: #f4f6f4;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: stretch; /* Растягиваем, чтобы блоки были одной высоты */
+}
+
+/* Стили формы - теперь она будет ровной */
+.contact-form-box {
+    background: white;
+    padding: 40px;
     border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.yoga-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Одинаковый отступ между всеми полями */
+    width: 100%;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.yoga-form input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #fdfdfd;
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+}
+
+.yoga-form .cta-button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Контакты - фиксим значки */
+.info-and-photo {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
+    height: 100%;
 }
 
-.contact-img {
+.info-item {
+    display: flex;
+    align-items: center; /* Центрируем иконку и текст по одной линии */
+    gap: 12px; /* Расстояние от иконки до текста */
+    margin-bottom: 20px;
+}
+
+.info-item .icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    min-width: 25px; /* Чтобы иконки стояли ровно друг под другом */
+}
+
+.info-item .text {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+/* Фото */
+.footer-photo-wrapper {
+    flex-shrink: 0;
+}
+
+.footer-img {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    border: 6px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.working-hours {
+    margin-top: 25px;
+    font-weight: 600;
+    color: var(--primary-color);
 }

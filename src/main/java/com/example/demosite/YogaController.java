@@ -17,7 +17,7 @@ public class YogaController {
 
     @GetMapping("/")
     public String home() {
-        return "index"; // Убедись, что index.html лежит в src/main/resources/templates
+        return "index";
     }
 
     @PostMapping("/register")
