@@ -595,3 +595,15 @@ nav a:hover { color: var(--primary-color); }
         display: flex;
     }
 }
+.site-footer {
+    padding: 30px 0;
+    background-color: #f4f6f4; /* Тот же фон, что и у final-zone, либо чуть темнее */
+    border-top: 1px solid #e0e0e0; /* Тонкая линия разделения */
+    text-align: center;
+}
+
+.site-footer p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
