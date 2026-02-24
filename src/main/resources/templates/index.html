@@ -17,7 +17,7 @@
         <a href="#expectations">Занятия</a>
         <a href="#room">Зал</a>
         <a href="#contacts">Контакты</a>
-        <a href="/prices" class="btn-link">Цены</a>
+        <a href="#prices">Цены</a>
     </nav>
 </header>
 
@@ -196,83 +196,98 @@
         </div>
     </section>
 
-    <section id="contacts" class="final-section">
+            <section id="prices" class="final-zone">
+            <div id="contacts" style="position: absolute; margin-top: -100px;"></div>
         <div class="container">
-            <div class="footer-grid">
+            <h2 class="section-title">Стоимость занятий</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>Старт</h3>
+                    <ul class="price-features">
+                        <li>Пробное <span>400 ₽</span></li>
+                        <li>Разовое <span>900 ₽</span></li>
+                    </ul>
+                    <p class="price-note">1 посещение любой группы</p>
+                    <a href="#register-anchor" class="price-btn">Выбрать</a>
+                </div>
 
+                <div class="price-card featured">
+                    <span class="badge">Популярно</span>
+                    <h3>Абонементы</h3>
+                    <ul class="price-features">
+                        <li>4 занятия <span>2800 ₽</span></li>
+                        <li>8 занятий <span>3600 ₽</span></li>
+                        <li>12 занятий <span>4560 ₽</span></li>
+                    </ul>
+                    <p class="price-note">Срок 30 дней. Любые направления.</p>
+                    <a href="#register-anchor" class="price-btn">Оформить</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Индивидуально</h3>
+                    <ul class="price-features">
+                        <li>Лично <span>2000 ₽</span></li>
+                        <li>Онлайн <span>1500 ₽</span></li>
+                        <li>Онлайн (8 занятий.) <span>3500 ₽</span></li>
+                    </ul>
+                    <p class="price-note">Персональный подход и комфорт.</p>
+                    <a href="#register-anchor" class="price-btn">Записаться</a>
+                </div>
+            </div>
+
+            <div id="register-anchor" style="padding-top: 80px;"></div>
+
+            <div class="action-row">
                 <div class="contact-form-box">
-                    <h2>Записаться на занятие</h2>
-                    <p>Оставьте заявку, и я свяжусь с вами в ближайшее время</p>
-
-                    <form th:action="@{/register}" method="post" class="yoga-form">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Ваше имя" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Ваш Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Номер телефона" required>
-                        </div>
+                    <h2>Записаться</h2>
+                    <form class="yoga-form">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш Email" required>
+                        <input type="tel" name="phone" placeholder="Номер телефона" required>
                         <button type="submit" class="cta-button">Отправить заявку</button>
                     </form>
                 </div>
 
-                <div class="contact-info-container">
-                    <div class="info-and-photo">
-                        <div class="info-content">
-                            <h3>Начните путь к себе</h3>
-
-                            <div class="info-item">
-                                <span class="icon">📍</span>
-                                <span class="text">Студия "Pitches", ул. Циолковского, 10</span>
-                            </div>
-
-                            <div class="info-item">
-                                <span class="icon">📞</span>
-                                <span class="text">+7 (929) 788-05-70</span>
-                            </div>
-
-                            <div class="info-item">
-                                <span class="icon">✉️</span>
-                                <span class="text">mvnaumova@mail.ru</span>
-                            </div>
-
-                            <p class="working-hours">Пн — Вс: 08:00 – 21:00</p>
-                        </div>
-
-                        <div class="footer-photo-wrapper">
-                            <img src="/images/contactlogo.png" class="footer-img" alt="Марина Наумова">
-                        </div>
-                    </div>
+                <div class="contact-info-card">
+                    <h2>Контакты</h2>
+                    <div class="info-item">Адрес: <span>ул. Рабоче-Крестьянская, д. 25</span></div>
+                    <div class="info-item">Телефон: <span>+7 (929) 788-05-70</span></div>
+                    <div class="info-item">Email: <span>mvnaumova@mail.ru</span></div>
+                    <div class="work-time">Время работы:   <span>Пн — Вс: 10:00 – 20:00<span></span></div>
+                    <img src="/images/contactlogo.png" alt="Марина" class="mini-logo">
                 </div>
-
             </div>
         </div>
     </section>
 
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">✔</div>
+            <h2>Успешно!</h2>
+            <p>Вы записались на йогу. Марина свяжется с вами в ближайшее время.</p>
+            <button onclick="closeModal()" class="cta-button">Отлично</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. Слайдер ---
+            // 1. Слайдер
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
-
-            function nextSlide() {
-                if (slides.length > 0) {
+            if (slides.length > 0) {
+                setInterval(() => {
                     slides[currentSlide].classList.remove('active');
                     currentSlide = (currentSlide + 1) % slides.length;
                     slides[currentSlide].classList.add('active');
-                }
+                }, 5000);
             }
-            setInterval(nextSlide, 5000);
 
-            // --- 2. Обработка формы ---
+            // 2. Обработка формы
             const yogaForm = document.querySelector('.yoga-form');
             if (yogaForm) {
                 yogaForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log("Кнопка нажата, отправляем данные...");
-
                     const formData = new FormData(this);
 
                     fetch('/register', {
@@ -280,31 +295,28 @@
                         body: formData
                     })
                     .then(response => {
-                        console.log("Статус ответа сервера:", response.status);
                         if (response.ok) {
                             document.getElementById('successModal').style.display = 'flex';
                             this.reset();
                         } else {
-                            alert("Ошибка сервера: " + response.status);
+                            alert("Ошибка при отправке: " + response.status);
                         }
                     })
-                    .catch(error => {
-                        console.error('Ошибка fetch:', error);
-                        alert("Произошла ошибка при отправке. Проверьте консоль.");
-                    });
+                    .catch(error => console.error('Error:', error));
                 });
             }
         });
 
-        // Функция закрытия модалки (вынесена наружу, чтобы кнопка onclick её видела)
         function closeModal() {
             document.getElementById('successModal').style.display = 'none';
         }
 
-        // Закрытие по крестику
-        const closeBtn = document.querySelector('.close-modal');
-        if (closeBtn) {
-            closeBtn.onclick = closeModal;
+        // Закрытие модалки по клику вне контента
+        window.onclick = function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                closeModal();
+            }
         }
     </script>
 
