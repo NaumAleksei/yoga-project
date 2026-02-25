@@ -26,7 +26,10 @@ body {
 
 /* Шапка */
 header {
-    position: fixed;
+    position: sticky; /* Вместо fixed */
+        top: 0;
+        z-index: 1000;    /* Чтобы шапка была поверх всего при скролле */
+        background-color: white; /* Обязательно задайте фон, иначе через шапку будет видно текст */
     top: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.95);
@@ -41,6 +44,17 @@ header {
 
 .logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 1px; }
 .logo span { color: var(--primary-color); }
+
+header .logo img {
+    height: 50px;    /* Подберите нужную высоту под ваш хедер */
+    width: auto;     /* Чтобы пропорции не искажались */
+    display: block;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
 
 nav a {
     text-decoration: none;
